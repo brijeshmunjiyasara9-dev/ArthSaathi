@@ -1,0 +1,599 @@
+{
+  "generated_at": "2026-04-14T18:25:58.364770",
+  "root": "D:\\Project",
+  "sections": {
+    "1_raw_data": {
+      "INC (Income Pyramid)": {
+        "exists": true,
+        "files": 142,
+        "format": "zip",
+        "size_mb": 440.98
+      },
+      "POI (People of India)": {
+        "exists": true,
+        "files": 36,
+        "format": "zip",
+        "size_mb": 674.33
+      },
+      "CON (Consumption Pyramid)": {
+        "exists": true,
+        "files": 142,
+        "format": "zip",
+        "size_mb": 2695.27
+      }
+    },
+    "2_processed_step1": {
+      "INC cleaned": {
+        "exists": true,
+        "parquet_files": 142,
+        "size_mb": 252.07
+      },
+      "POI cleaned": {
+        "exists": true,
+        "parquet_files": 36,
+        "size_mb": 192.65
+      },
+      "CON cleaned": {
+        "exists": true,
+        "parquet_files": 140,
+        "size_mb": 1254.21
+      }
+    },
+    "3_raw_vs_processed_diff": {
+      "note": "Raw files are ZIP; cleaned output is parquet",
+      "sample_rows": 139550,
+      "sample_cols": 19,
+      "sample_missing_pct": 0.03,
+      "sentinel_remaining": 0,
+      "raw_total_mb": 3810.58,
+      "proc_total_mb": 1698.93,
+      "reduction_pct": 55.4,
+      "columns_kept": [
+        "household_id",
+        "state",
+        "homogeneous_region",
+        "district",
+        "region_type",
+        "stratum",
+        "month_slot",
+        "reference_month",
+        "age_group",
+        "occupation_group",
+        "education_group",
+        "gender_group",
+        "household_size_group",
+        "total_income",
+        "income_all_members_from_wages",
+        "income_household_from_rent",
+        "income_household_from_self_production",
+        "income_household_from_private_transfers",
+        "income_household_from_business_profit"
+      ]
+    },
+    "4_household_dataset": {
+      "file_size_mb": 1904.45,
+      "total_rows": 17685418,
+      "total_cols": 132,
+      "num_row_groups": 140,
+      "schema_columns": [
+        "household_id",
+        "state",
+        "homogeneous_region",
+        "district",
+        "region_type",
+        "stratum",
+        "month_slot",
+        "reference_month",
+        "age_group",
+        "occupation_group",
+        "education_group",
+        "gender_group",
+        "household_size_group",
+        "income_all_members_from_wages",
+        "income_household_from_rent",
+        "income_household_from_self_production",
+        "income_household_from_private_transfers",
+        "income_household_from_business_profit",
+        "exp_food_adjusted",
+        "exp_cereals_and_pulses",
+        "exp_edible_oils_adjusted",
+        "exp_dry_spices",
+        "exp_vegetables_and_fruits_adjusted",
+        "exp_vegetables_and_wet_spices_adjusted",
+        "exp_fruits_adjusted",
+        "exp_potatoes_and_onions_adjusted",
+        "exp_milk_and_milk_products_adjusted",
+        "exp_bread_adjusted",
+        "exp_biscuits_adjusted",
+        "exp_salty_snacks_adjusted",
+        "exp_noodles_and_flakes",
+        "exp_chocolate_cake_icecream_adjusted",
+        "exp_jam_ketchup_pickles",
+        "exp_health_supplements",
+        "exp_meat_eggs_and_fish_adjusted",
+        "exp_ready_to_eat_food",
+        "exp_tea_and_coffee",
+        "exp_sugar_and_sweeteners",
+        "exp_beverages_and_water_adjusted",
+        "exp_bottled_water_adjusted",
+        "exp_other_food",
+        "exp_intoxicants_adjusted",
+        "exp_cigarettes_and_tobacco_adjusted",
+        "exp_liquor",
+        "exp_clothing_and_footwear",
+        "exp_clothing",
+        "exp_footwear",
+        "exp_clothing_accessories",
+        "exp_cosmetics_and_toiletries",
+        "exp_dental_care_products",
+        "exp_bathing_soap",
+        "exp_cosmetics",
+        "exp_face_wash",
+        "exp_shaving_articles",
+        "exp_hair_oil",
+        "exp_shampoo_and_conditioner",
+        "exp_powder",
+        "exp_creams",
+        "exp_deodorants_and_perfumes",
+        "exp_detergent_all_types",
+        "exp_appliances",
+        "exp_restaurants_adjusted",
+        "exp_recreation",
+        "exp_entertainment",
+        "exp_toys",
+        "exp_bills_and_rent",
+        "exp_house_rent",
+        "exp_water_charges",
+        "exp_society_charges",
+        "exp_other_taxes",
+        "exp_cooking_fuel",
+        "exp_petrol_and_cng_adjusted",
+        "exp_diesel_adjusted",
+        "exp_electricity",
+        "exp_transport_adjusted",
+        "exp_autorickshaw_and_cab_adjusted",
+        "exp_airfare",
+        "exp_communication_and_information",
+        "exp_mobile_phone",
+        "exp_cable_tv",
+        "exp_internet",
+        "exp_newspapers_and_magazines",
+        "exp_education",
+        "exp_school_and_college_fees",
+        "exp_private_tuition_fees",
+        "exp_hobby_classes",
+        "exp_additional_professional_education",
+        "exp_health",
+        "exp_medicines",
+        "exp_hospitalisation_fees",
+        "exp_health_insurance_premium",
+        "exp_health_enhancement",
+        "exp_all_emis",
+        "exp_emi_house",
+        "exp_emi_vehicle",
+        "exp_miscellaneous",
+        "exp_domestic_help",
+        "exp_motor_vehicle_repairs",
+        "exp_remittances_sent",
+        "exp_social_obligations",
+        "exp_religious_obligations",
+        "exp_general_insurance",
+        "exp_vacation",
+        "exp_furniture_and_furnishings",
+        "exp_painting_and_renovation",
+        "is_healthy_hh_min",
+        "is_hospitalised_hh_any",
+        "is_on_regular_medication_hh_any",
+        "has_bank_account_hh_any",
+        "has_health_insurance_hh_any",
+        "has_life_insurance_hh_any",
+        "has_provident_fund_account_hh_any",
+        "has_credit_card_hh_any",
+        "has_demat_account_hh_any",
+        "has_mobile_phone_hh_any",
+        "age_years_hh_mean",
+        "education_rank_hh_max",
+        "gender_hh_mode",
+        "occupation_type_hh_mode",
+        "education_level_hh_mode",
+        "financial_stress",
+        "food_stress",
+        "debt_stress",
+        "health_stress",
+        "composite_stress_score",
+        "emi_to_income_ratio",
+        "food_to_expense_ratio",
+        "health_to_expense_ratio",
+        "education_to_expense_ratio",
+        "discretionary_to_expense_ratio",
+        "savings_proxy",
+        "income_diversity_score"
+      ],
+      "stress_labels": {
+        "financial_stress": {
+          "positive_sample": 25778,
+          "pct_sample": 18.47
+        },
+        "food_stress": {
+          "positive_sample": 93104,
+          "pct_sample": 66.72
+        },
+        "debt_stress": {
+          "positive_sample": 502,
+          "pct_sample": 0.36
+        },
+        "health_stress": {
+          "positive_sample": 134,
+          "pct_sample": 0.1
+        },
+        "composite_stress_score": {
+          "0": 36937,
+          "1": 85777,
+          "2": 16768,
+          "3": 67,
+          "4": 1
+        }
+      },
+      "missing_analysis": {
+        "financial_stress": {
+          "missing": 0,
+          "missing_pct": 0.0
+        },
+        "food_stress": {
+          "missing": 0,
+          "missing_pct": 0.0
+        },
+        "debt_stress": {
+          "missing": 0,
+          "missing_pct": 0.0
+        },
+        "health_stress": {
+          "missing": 0,
+          "missing_pct": 0.0
+        },
+        "emi_to_income_ratio": {
+          "missing": 0,
+          "missing_pct": 0.0
+        },
+        "food_to_expense_ratio": {
+          "missing": 0,
+          "missing_pct": 0.0
+        },
+        "savings_proxy": {
+          "missing": 0,
+          "missing_pct": 0.0
+        },
+        "is_healthy_hh_min": {
+          "missing": 0,
+          "missing_pct": 0.0
+        },
+        "has_bank_account_hh_any": {
+          "missing": 0,
+          "missing_pct": 0.0
+        },
+        "state": {
+          "missing": 0,
+          "missing_pct": 0.0
+        }
+      }
+    },
+    "5_poi_agg": {
+      "exists": true,
+      "rows": 4576963,
+      "cols": 22,
+      "size_mb": 23.31,
+      "columns": [
+        "household_id",
+        "state",
+        "homogeneous_region",
+        "district",
+        "region_type",
+        "stratum",
+        "month_slot",
+        "is_healthy_hh_min",
+        "is_hospitalised_hh_any",
+        "is_on_regular_medication_hh_any",
+        "has_bank_account_hh_any",
+        "has_health_insurance_hh_any",
+        "has_life_insurance_hh_any",
+        "has_provident_fund_account_hh_any",
+        "has_credit_card_hh_any",
+        "has_demat_account_hh_any",
+        "has_mobile_phone_hh_any",
+        "age_years_hh_mean",
+        "education_rank_hh_max",
+        "gender_hh_mode",
+        "occupation_type_hh_mode",
+        "education_level_hh_mode"
+      ]
+    },
+    "6_model_artefacts": {
+      "financial_stress_model.pkl": {
+        "exists": true,
+        "size_mb": 1.4
+      },
+      "food_stress_model.pkl": {
+        "exists": true,
+        "size_mb": 1.41
+      },
+      "debt_stress_model.pkl": {
+        "exists": true,
+        "size_mb": 1.08
+      },
+      "health_stress_model.pkl": {
+        "exists": true,
+        "size_mb": 0.37
+      },
+      "composite_stress_model.pkl": {
+        "exists": true,
+        "size_mb": 1.35
+      },
+      "preprocessor.pkl": {
+        "exists": true,
+        "size_mb": 0.01
+      },
+      "feature_metadata.json": {
+        "exists": true,
+        "size_mb": 0.01
+      },
+      "evaluation_report.json": {
+        "exists": true,
+        "size_mb": 0.01
+      }
+    },
+    "7_model_performance": {
+      "financial_stress": {
+        "f1_macro": 0.8732,
+        "auc_roc": 0.9833,
+        "accuracy": 0.9218,
+        "n_test": 123339
+      },
+      "food_stress": {
+        "f1_macro": 0.9045,
+        "auc_roc": 0.9719,
+        "accuracy": 0.9079,
+        "n_test": 123339
+      },
+      "debt_stress": {
+        "f1_macro": 0.914,
+        "auc_roc": 0.9996,
+        "accuracy": 0.9943,
+        "n_test": 123339
+      },
+      "health_stress": {
+        "f1_macro": 0.454,
+        "auc_roc": 0.6567,
+        "accuracy": 0.8193,
+        "n_test": 123339
+      },
+      "composite_stress_score": {
+        "mae": 0.2361,
+        "rmse": 0.4638,
+        "classification_report": {
+          "0": {
+            "precision": 0.8039980912778213,
+            "recall": 0.9490826426329766,
+            "f1-score": 0.8705367851936597,
+            "support": 49708.0
+          },
+          "1": {
+            "precision": 0.781960956993982,
+            "recall": 0.7816311185284355,
+            "f1-score": 0.7817960029716319,
+            "support": 54527.0
+          },
+          "2": {
+            "precision": 0.8001405340293114,
+            "recall": 0.458868228656957,
+            "f1-score": 0.5832510152562836,
+            "support": 17371.0
+          },
+          "3": {
+            "precision": 0.6615384615384615,
+            "recall": 0.07521865889212828,
+            "f1-score": 0.13507853403141362,
+            "support": 1715.0
+          },
+          "4": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1-score": 0.0,
+            "support": 18.0
+          },
+          "accuracy": 0.793722991105814,
+          "macro avg": {
+            "precision": 0.6095276087679152,
+            "recall": 0.4529601297420995,
+            "f1-score": 0.4741324674905978,
+            "support": 123339.0
+          },
+          "weighted avg": {
+            "precision": 0.791614184494851,
+            "recall": 0.793722991105814,
+            "f1-score": 0.7804907307852454,
+            "support": 123339.0
+          }
+        },
+        "confusion_matrix_5class": [
+          [
+            47177,
+            2528,
+            3,
+            0,
+            0
+          ],
+          [
+            11411,
+            42620,
+            495,
+            1,
+            0
+          ],
+          [
+            90,
+            9262,
+            7971,
+            48,
+            0
+          ],
+          [
+            0,
+            94,
+            1492,
+            129,
+            0
+          ],
+          [
+            0,
+            0,
+            1,
+            17,
+            0
+          ]
+        ],
+        "n_test": 123339,
+        "split_method": "temporal"
+      }
+    },
+    "8_feature_importance": {
+      "financial_stress": {
+        "num__has_life_insurance_hh_any": 0.2237021028995514,
+        "num__exp_restaurants_adjusted": 0.12448016554117203,
+        "cat__state": 0.11692151427268982,
+        "num__income_household_from_private_transfers": 0.05980483070015907,
+        "cat__age_group": 0.048426516354084015,
+        "num__exp_all_emis": 0.047742296010255814,
+        "num__food_to_expense_ratio": 0.038800813257694244,
+        "num__savings_proxy": 0.03865083307027817,
+        "cat__gender_hh_mode": 0.028741348534822464,
+        "num__income_diversity_score": 0.028073051944375038
+      },
+      "food_stress": {
+        "num__education_rank_hh_max": 0.1415935456752777,
+        "cat__occupation_group": 0.08203291893005371,
+        "num__has_health_insurance_hh_any": 0.07914859801530838,
+        "num__exp_health": 0.07101646810770035,
+        "num__exp_food_adjusted": 0.050698742270469666,
+        "num__exp_education": 0.04797334969043732,
+        "num__has_bank_account_hh_any": 0.04100954905152321,
+        "num__exp_restaurants_adjusted": 0.04017770290374756,
+        "num__has_mobile_phone_hh_any": 0.03771226480603218,
+        "num__income_household_from_private_transfers": 0.03623325750231743
+      },
+      "debt_stress": {
+        "num__exp_all_emis": 0.5029970407485962,
+        "num__food_to_expense_ratio": 0.14693421125411987,
+        "num__has_provident_fund_account_hh_any": 0.06935041397809982,
+        "num__savings_proxy": 0.054551463574171066,
+        "num__has_life_insurance_hh_any": 0.02939251810312271,
+        "cat__region_type": 0.025779860094189644,
+        "num__has_health_insurance_hh_any": 0.023735282942652702,
+        "num__income_all_members_from_wages": 0.019125675782561302,
+        "num__emi_to_income_ratio": 0.0153396837413311,
+        "num__exp_food_adjusted": 0.013917412608861923
+      },
+      "health_stress": {
+        "num__is_hospitalised_hh_any": 0.8994541764259338,
+        "num__is_healthy_hh_min": 0.016772359609603882,
+        "num__has_life_insurance_hh_any": 0.011809899471700191,
+        "num__education_rank_hh_max": 0.008125190623104572,
+        "cat__region_type": 0.007207219954580069,
+        "num__income_diversity_score": 0.006557639222592115,
+        "num__savings_proxy": 0.005410429090261459,
+        "num__has_health_insurance_hh_any": 0.005373261868953705,
+        "num__health_to_expense_ratio": 0.005310017615556717,
+        "cat__household_size_group": 0.0049101305194199085
+      }
+    },
+    "9_health_checklist": {
+      "passed": 19,
+      "total": 19,
+      "checks": [
+        {
+          "check": "Raw INC data present",
+          "passed": true
+        },
+        {
+          "check": "Raw POI data present",
+          "passed": true
+        },
+        {
+          "check": "Raw CON data present",
+          "passed": true
+        },
+        {
+          "check": "Processed INC (Step 1)",
+          "passed": true
+        },
+        {
+          "check": "Processed POI (Step 1)",
+          "passed": true
+        },
+        {
+          "check": "Processed CON (Step 1)",
+          "passed": true
+        },
+        {
+          "check": "Household joined dataset",
+          "passed": true
+        },
+        {
+          "check": "POI aggregated cache",
+          "passed": true
+        },
+        {
+          "check": "Model: financial_stress_model.pkl",
+          "passed": true
+        },
+        {
+          "check": "Model: food_stress_model.pkl",
+          "passed": true
+        },
+        {
+          "check": "Model: debt_stress_model.pkl",
+          "passed": true
+        },
+        {
+          "check": "Model: health_stress_model.pkl",
+          "passed": true
+        },
+        {
+          "check": "Model: composite_stress_model.pkl",
+          "passed": true
+        },
+        {
+          "check": "Model: preprocessor.pkl",
+          "passed": true
+        },
+        {
+          "check": "evaluation_report.json",
+          "passed": true
+        },
+        {
+          "check": "feature_metadata.json",
+          "passed": true
+        },
+        {
+          "check": "Backend main.py",
+          "passed": true
+        },
+        {
+          "check": "Backend .env",
+          "passed": true
+        },
+        {
+          "check": "Frontend App.jsx",
+          "passed": true
+        }
+      ]
+    },
+    "10_pipeline_status": {
+      "Step 1 -- Clean raw data": true,
+      "Step 2 -- Build household dataset": true,
+      "Step 3 -- Train models": true,
+      "Step 4 -- Evaluate models": true,
+      "Step 5 -- FastAPI backend": true,
+      "Step 6 -- React frontend": true
+    }
+  }
+}

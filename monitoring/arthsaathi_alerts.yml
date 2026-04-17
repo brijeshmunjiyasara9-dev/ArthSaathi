@@ -1,0 +1,114 @@
+# =============================================================
+# arthsaathi_alerts.yml — Prometheus Alert Rules for ArthSaathi
+# =============================================================
+# Referenced by prometheus.yml under rule_files:
+#   - "arthsaathi_alerts.yml"
+#
+# To send alerts to Slack/Email, configure Alertmanager:
+#   https://prometheus.io/docs/alerting/latest/alertmanager/
+# =============================================================
+
+groups:
+
+  # ── API Health Alerts ───────────────────────────────────────
+  - name: arthsaathi_api
+    rules:
+
+      # API is completely down (no scrape for 30s)
+      - alert: ArthSaathiAPIDown
+        expr: up{job="arthsaathi-api"} == 0
+        for: 30s
+        labels:
+          severity: critical
+        annotations:
+          summary: "ArthSaathi API is DOWN"
+          description: >
+            The FastAPI backend at localhost:8000 has been unreachable
+            for more than 30 seconds. Check uvicorn process.
+
+      # Prediction volume dropped >50% vs 1-hour average
+      - alert: PredictionVolumeDrop
+        expr: >
+          rate(arthsaathi_predictions_total[5m]) <
+          0.5 * avg_over_time(rate(arthsaathi_predictions_total[5m])[1h:5m])
+        for: 10m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Prediction volume dropped >50%"
+          description: >
+            The rate of predictions has dropped more than 50% compared
+            to the 1-hour average. Possible API issue or low traffic.
+
+  # ── Latency Alerts ─────────────────────────────────────────
+  - name: arthsaathi_latency
+    rules:
+
+      # p99 prediction latency exceeds 500ms
+      - alert: HighPredictionLatency
+        expr: >
+          histogram_quantile(0.99,
+            rate(arthsaathi_prediction_latency_seconds_bucket[5m])
+          ) > 0.5
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Prediction latency p99 > 500ms"
+          description: >
+            The 99th percentile prediction latency has been above 500ms
+            for 5 minutes. Check model loading, database queries, or
+            OpenAI API response times.
+
+      # p99 latency is critical (>2 seconds)
+      - alert: CriticalPredictionLatency
+        expr: >
+          histogram_quantile(0.99,
+            rate(arthsaathi_prediction_latency_seconds_bucket[5m])
+          ) > 2.0
+        for: 2m
+        labels:
+          severity: critical
+        annotations:
+          summary: "Prediction latency p99 > 2s — CRITICAL"
+          description: >
+            Latency p99 has exceeded 2 seconds. Users are experiencing
+            severe delays. Check model inference, database, and network.
+
+  # ── Stress Rate Alerts ─────────────────────────────────────
+  - name: arthsaathi_stress_rates
+    rules:
+
+      # High-stress predictions surge >20% above 1-week baseline
+      - alert: HighStressRateSurge
+        expr: >
+          rate(arthsaathi_high_stress_total[1h]) >
+          1.2 * avg_over_time(rate(arthsaathi_high_stress_total[1h])[7d:1h])
+        for: 30m
+        labels:
+          severity: warning
+        annotations:
+          summary: "High-stress prediction rate increased >20%"
+          description: >
+            The rate of high-stress predictions has surged more than 20%
+            above the 7-day rolling average. Could indicate:
+            - A real increase in household stress (economic event)
+            - Model drift requiring retraining
+            - Bad data coming in from the chatbot
+            Run: python scripts/08_retrain_check.py --root D:/Project
+
+      # Financial stress domain specifically surging
+      - alert: FinancialStressDomainSurge
+        expr: >
+          rate(arthsaathi_high_stress_total{domain="financial_stress"}[1h]) >
+          1.3 * avg_over_time(
+            rate(arthsaathi_high_stress_total{domain="financial_stress"}[1h])
+          [7d:1h])
+        for: 1h
+        labels:
+          severity: warning
+        annotations:
+          summary: "Financial stress surge detected"
+          description: >
+            Financial stress predictions have surged 30%+ above baseline
+            over the past hour. Review input data quality or run drift check.

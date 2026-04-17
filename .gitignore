@@ -1,0 +1,42 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Environment
+.env
+.venv/
+venv/
+env/
+ENV/
+
+# Data & Models
+/Dataset/
+/processed/
+/processed2/
+
+# Frontend / Node.js
+**/node_modules/
+**/dist/
+**/build/
+.npm/
+
+# IDEs & Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+
+# Monitoring & Logs
+/monitoring/*.html
+/monitoring/*.json
+*.log
+
+# SQLite Database
+*.db
+*.sqlite3
+
+# Jupyter
+.ipynb_checkpoints/

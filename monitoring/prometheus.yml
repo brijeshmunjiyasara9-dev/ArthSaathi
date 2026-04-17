@@ -1,0 +1,61 @@
+# =============================================================
+# prometheus.yml — ArthSaathi Prometheus Configuration
+# =============================================================
+# Usage:
+#   1. Install Prometheus: https://prometheus.io/download/
+#   2. Place this file at: D:/Project/monitoring/prometheus.yml
+#   3. Start: prometheus.exe --config.file=D:/Project/monitoring/prometheus.yml
+#   4. Open:  http://localhost:9090
+#
+# Grafana (optional):
+#   1. Install: https://grafana.com/grafana/download
+#   2. Start Grafana, add Prometheus as data source: http://localhost:9090
+#   3. Import dashboard or build panels using queries below
+# =============================================================
+
+global:
+  scrape_interval:     15s   # How often to scrape targets
+  evaluation_interval: 15s   # How often to evaluate alert rules
+  scrape_timeout:      10s
+
+  # Labels attached to all time series from this server
+  external_labels:
+    monitor: 'arthsaathi-local'
+    environment: 'development'
+
+# ── Alert rules file ──────────────────────────────────────────
+rule_files:
+  - "arthsaathi_alerts.yml"
+
+# ── Scrape targets ────────────────────────────────────────────
+scrape_configs:
+
+  # ArthSaathi FastAPI backend — pip install prometheus-client required
+  - job_name: 'arthsaathi-api'
+    scrape_interval: 15s
+    metrics_path: /metrics
+    static_configs:
+      - targets:
+          - 'localhost:8000'          # FastAPI backend (uvicorn)
+        labels:
+          app: 'arthsaathi'
+          service: 'backend'
+
+  # Prometheus self-monitoring
+  - job_name: 'prometheus'
+    static_configs:
+      - targets:
+          - 'localhost:9090'
+
+  # Node Exporter — system metrics (CPU, RAM, disk)
+  # Install: https://prometheus.io/download/#node_exporter
+  # Windows: use windows_exporter instead
+  # - job_name: 'node'
+  #   static_configs:
+  #     - targets: ['localhost:9100']
+
+  # windows_exporter — Windows system metrics (uncomment if on Windows)
+  # Install: https://github.com/prometheus-community/windows_exporter/releases
+  # - job_name: 'windows'
+  #   static_configs:
+  #     - targets: ['localhost:9182']
